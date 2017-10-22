@@ -17,13 +17,69 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="podcastCustomCell" rowHeight="81" id="aUQ-q7-1Em">
-                                <rect key="frame" x="0.0" y="28" width="375" height="81"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="podcastCustomCell" rowHeight="144" id="aUQ-q7-1Em" customClass="PodcastCustomTableViewCell" customModule="Homework2" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="144"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aUQ-q7-1Em" id="LRj-BP-tPA">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="143.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FUA-I0-Zai">
+                                            <rect key="frame" x="10" y="10" width="355" height="123.5"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="dho-rn-cEk">
+                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTV-u8-o13">
+                                                            <rect key="frame" x="0.0" y="0.0" width="42" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="lAm-zq-GG5">
+                                                            <rect key="frame" x="280" y="0.0" width="75" height="30"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m92-PY-KeP">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                                    <state key="normal" title="Play"/>
+                                                                    <connections>
+                                                                        <action selector="playButtonPressed:" destination="aUQ-q7-1Em" eventType="touchUpInside" id="luK-Fe-jl7"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5b9-gn-gqN">
+                                                                    <rect key="frame" x="45" y="0.0" width="30" height="30"/>
+                                                                    <state key="normal" title="Add"/>
+                                                                    <connections>
+                                                                        <action selector="addToPlaylistPressed:" destination="aUQ-q7-1Em" eventType="touchUpInside" id="Fo2-Cs-IXb"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bWE-l6-ybG">
+                                                    <rect key="frame" x="0.0" y="40" width="355" height="83.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="FUA-I0-Zai" firstAttribute="top" secondItem="LRj-BP-tPA" secondAttribute="top" constant="10" id="EXA-je-RAi"/>
+                                        <constraint firstAttribute="bottom" secondItem="FUA-I0-Zai" secondAttribute="bottom" constant="10" id="GeE-bW-D9l"/>
+                                        <constraint firstItem="FUA-I0-Zai" firstAttribute="leading" secondItem="LRj-BP-tPA" secondAttribute="leading" constant="10" id="mj6-Gd-OdG"/>
+                                        <constraint firstAttribute="trailing" secondItem="FUA-I0-Zai" secondAttribute="trailing" constant="10" id="w7D-jI-vY6"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="addTopPlaylistButton" destination="5b9-gn-gqN" id="7ZW-go-dru"/>
+                                    <outlet property="playButton" destination="m92-PY-KeP" id="afk-IR-Yub"/>
+                                    <outlet property="podcastInfoView" destination="bWE-l6-ybG" id="2Nm-Z4-wBS"/>
+                                    <outlet property="podcastLabel" destination="CTV-u8-o13" id="9tl-my-tRb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

@@ -18,15 +18,7 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
     var infoEnd = false
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
         getFeeds()
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
     //URL connection method
@@ -54,7 +46,7 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
     
     // PRAGMA MARK: XML Parsing code
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
-        
+ 
         if elementName == "item" {
             //initializing the object
             currentPodcast = Podcast(title: "", information: "", mediaURL: nil)
@@ -100,8 +92,6 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
         
     }
     
-    
-    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,9 +105,11 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "podcastCustomCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "podcastCustomCell", for: indexPath) as! PodcastCustomTableViewCell
         let podcast = podcastArray[indexPath.row]
-        cell.textLabel?.text = podcast.title
+        cell.podcastLabel.text = podcast.title
+        cell.podcastInfoView.text = podcast.information
+        
         return cell
      }
 
@@ -129,7 +121,6 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    
 
 }
 
