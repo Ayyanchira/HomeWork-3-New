@@ -15,6 +15,7 @@
 		CEBE39B01F9CD9E700B5B374 /* PodcastsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE39AF1F9CD9E700B5B374 /* PodcastsTableViewController.swift */; };
 		CEBE39B31F9CFCBC00B5B374 /* PodcastCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE39B21F9CFCBC00B5B374 /* PodcastCustomTableViewCell.swift */; };
 		CEBE39B51F9D0A1200B5B374 /* PlaylistTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE39B41F9D0A1200B5B374 /* PlaylistTableViewController.swift */; };
+		CEBE39B71F9D27F900B5B374 /* PlayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBE39B61F9D27F900B5B374 /* PlayList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CEBE39AF1F9CD9E700B5B374 /* PodcastsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastsTableViewController.swift; sourceTree = "<group>"; };
 		CEBE39B21F9CFCBC00B5B374 /* PodcastCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PodcastCustomTableViewCell.swift; sourceTree = "<group>"; };
 		CEBE39B41F9D0A1200B5B374 /* PlaylistTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistTableViewController.swift; sourceTree = "<group>"; };
+		CEBE39B61F9D27F900B5B374 /* PlayList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayList.swift; sourceTree = "<group>"; };
 		DA8DF7A902D98E68EBA191DC /* Pods-Homework2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Homework2.release.xcconfig"; path = "Pods/Target Support Files/Pods-Homework2/Pods-Homework2.release.xcconfig"; sourceTree = "<group>"; };
 		DC373CD842120869A7BAA01B /* Pods-Homework2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Homework2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Homework2/Pods-Homework2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -71,6 +73,7 @@
 				CEBE39AF1F9CD9E700B5B374 /* PodcastsTableViewController.swift */,
 				CEBE39B21F9CFCBC00B5B374 /* PodcastCustomTableViewCell.swift */,
 				CEBE39B41F9D0A1200B5B374 /* PlaylistTableViewController.swift */,
+				CEBE39B61F9D27F900B5B374 /* PlayList.swift */,
 			);
 			path = Homework2;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEBE39B31F9CFCBC00B5B374 /* PodcastCustomTableViewCell.swift in Sources */,
+				CEBE39B71F9D27F900B5B374 /* PlayList.swift in Sources */,
 				CEBE39B01F9CD9E700B5B374 /* PodcastsTableViewController.swift in Sources */,
 				60A18B221F86F2EC00BA92CD /* AppDelegate.swift in Sources */,
 				CEBE39B51F9D0A1200B5B374 /* PlaylistTableViewController.swift in Sources */,

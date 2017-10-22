@@ -48,6 +48,7 @@
                                                                     </constraints>
                                                                     <state key="normal" title="Play" image="video-play-icon-6"/>
                                                                     <connections>
+                                                                        <action selector="playButtonPressed:" destination="eyp-zQ-vp3" eventType="touchUpInside" id="OJu-zv-HZz"/>
                                                                         <action selector="playButtonPressed:" destination="aUQ-q7-1Em" eventType="touchUpInside" id="luK-Fe-jl7"/>
                                                                     </connections>
                                                                 </button>
@@ -55,6 +56,7 @@
                                                                     <rect key="frame" x="40" y="0.0" width="22" height="25"/>
                                                                     <connections>
                                                                         <action selector="addToPlaylistPressed:" destination="aUQ-q7-1Em" eventType="touchUpInside" id="Fo2-Cs-IXb"/>
+                                                                        <action selector="addToPlaylistPressed:" destination="eyp-zQ-vp3" eventType="touchUpInside" id="JP7-Eh-JIW"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>

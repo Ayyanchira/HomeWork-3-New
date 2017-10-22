@@ -8,10 +8,12 @@
 
 import UIKit
 import Alamofire
-
+import AVKit
 class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
 
     var podcastArray:[Podcast] = []
+    var playerController:AVQueuePlayer = AVQueuePlayer()
+    
     var currentPodcast:Podcast?
     var itemFound = false
     var currentElement:String?
@@ -40,7 +42,6 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
                 }
             }
         })
-        
         dataTask.resume()
     }
     
@@ -109,11 +110,38 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
         let podcast = podcastArray[indexPath.row]
         cell.podcastLabel.text = podcast.title
         cell.podcastInfoView.text = podcast.information
-        
+        cell.playButton.tag = indexPath.row
+        cell.isPlaying = cell.isPlaying ?? false
+        cell.addTopPlaylistButton.tag = indexPath.row
         return cell
      }
 
-   
+    @IBAction func playButtonPressed(_ sender: UIButton) {
+        let podcast = podcastArray[sender.tag]
+        let currentItem = playerController.currentItem
+        let indexPath = IndexPath(row: sender.tag, section: 1)
+        let cell = tableView(tableView, cellForRowAt: indexPath) as! PodcastCustomTableViewCell
+        if cell.isPlaying == true{
+            playerController.pause()
+            return
+        }
+        if currentItem == nil {
+            playerController = AVQueuePlayer(url: podcast.streamingLink!)
+            playerController.play()
+        }
+        else{
+            let nextPodcast = AVPlayerItem(url: podcast.streamingLink!)
+            playerController.replaceCurrentItem(with: nextPodcast)
+            return
+        }
+    }
+    
+    @IBAction func addToPlaylistPressed(_ sender: UIButton) {
+        
+    }
+    
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -124,7 +152,7 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
 
 }
 
-class Podcast: NSObject {
+public class Podcast: NSObject {
     var title:String?
     var information: String?
     var streamingLink:URL?
