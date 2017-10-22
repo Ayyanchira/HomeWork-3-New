@@ -13,11 +13,12 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
 
     var podcastArray:[Podcast] = []
     var playerController:AVQueuePlayer = AVQueuePlayer()
-    
+    var nowPlaying:Int?
     var currentPodcast:Podcast?
     var itemFound = false
     var currentElement:String?
     var infoEnd = false
+    var isPaused = false
     override func viewDidLoad() {
         super.viewDidLoad()
         getFeeds()
@@ -111,7 +112,14 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
         cell.podcastLabel.text = podcast.title
         cell.podcastInfoView.text = podcast.information
         cell.playButton.tag = indexPath.row
-        cell.isPlaying = cell.isPlaying ?? false
+        cell.playButton.setImage(#imageLiteral(resourceName: "video-play-icon-6"), for: .normal)
+        if nowPlaying != nil{
+            if nowPlaying == indexPath.row {
+                if !isPaused{
+                    cell.playButton.setImage(#imageLiteral(resourceName: "pause-512"), for: .normal)
+                }
+            }
+        }
         cell.addTopPlaylistButton.tag = indexPath.row
         return cell
      }
@@ -119,20 +127,33 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
     @IBAction func playButtonPressed(_ sender: UIButton) {
         let podcast = podcastArray[sender.tag]
         let currentItem = playerController.currentItem
-        let indexPath = IndexPath(row: sender.tag, section: 1)
-        let cell = tableView(tableView, cellForRowAt: indexPath) as! PodcastCustomTableViewCell
-        if cell.isPlaying == true{
-            playerController.pause()
+        
+        let nextSongNumber = sender.tag
+        if nextSongNumber == nowPlaying{
+            if isPaused{
+                playerController.play()
+                isPaused = false
+            }
+            else{
+                playerController.pause()
+                isPaused = true
+            }
+            tableView.reloadData()
             return
         }
         if currentItem == nil {
             playerController = AVQueuePlayer(url: podcast.streamingLink!)
             playerController.play()
+            nowPlaying = sender.tag
+            tableView.reloadData()
         }
         else{
             let nextPodcast = AVPlayerItem(url: podcast.streamingLink!)
             playerController.replaceCurrentItem(with: nextPodcast)
-            return
+            playerController.play()
+            isPaused = false
+            nowPlaying = sender.tag
+            tableView.reloadData()
         }
     }
     

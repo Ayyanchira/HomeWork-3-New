@@ -17,9 +17,8 @@ class PodcastCustomTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        toggleMediaIcon()
+        //showIcon()
     }
-
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -27,26 +26,26 @@ class PodcastCustomTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func playButtonPressed(_ sender: UIButton) {
-        toggleMediaIcon()
+       // toggleMediaIcon()
     }
     
     @IBAction func addToPlaylistPressed(_ sender: UIButton) {
     }
     
-    func toggleMediaIcon() {
-        if let status = isPlaying{
-            if status {
-                isPlaying = false
-                DispatchQueue.main.async {
-                    self.playButton.imageView?.image = #imageLiteral(resourceName: "video-play-icon-6")
-                }
-            }else{
-                isPlaying = true
-                DispatchQueue.main.async {
-                    self.playButton.imageView?.image = #imageLiteral(resourceName: "pause-512")
-                }
-            }
-        }
-        
-    }
+//    func showIcon() {
+//        if let status = isPlaying{
+//            if status {
+//                isPlaying = false
+//                DispatchQueue.main.async {
+//                    self.playButton.imageView?.image = #imageLiteral(resourceName: "video-play-icon-6")
+//                }
+//            }else{
+//                isPlaying = true
+//                DispatchQueue.main.async {
+//                    self.playButton.imageView?.image = #imageLiteral(resourceName: "pause-512")
+//                }
+//            }
+//        }
+//
+//    }
 }
