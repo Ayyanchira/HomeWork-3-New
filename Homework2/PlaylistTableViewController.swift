@@ -10,6 +10,8 @@ import UIKit
 import AVKit
 class PlaylistTableViewController: UITableViewController {
 
+    @IBOutlet weak var navBar: UINavigationItem!
+    @IBOutlet weak var playAllButton: UIBarButtonItem!
     var playerController:AVQueuePlayer = AVQueuePlayer()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,14 +23,6 @@ class PlaylistTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        print("View Appeared")
-    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -57,7 +51,12 @@ class PlaylistTableViewController: UITableViewController {
             playerController.remove(avItem)
             print(playerController.items().count)
         }
+        
         if(Playlist.sharedInstance.removePodcastAtIndex(index: sender.tag)){
+            if Playlist.sharedInstance.playlist.count==0 {
+                let newBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.play, target: self, action: #selector(PlaylistTableViewController.playAllPressed(_:)))
+                navBar.rightBarButtonItem = newBarButton
+            }
             tableView.reloadData()
         }
     }
@@ -65,16 +64,32 @@ class PlaylistTableViewController: UITableViewController {
     @IBAction func playAllPressed(_ sender: UIBarButtonItem) {
         let currentItem = playerController.currentItem
         if currentItem == nil {
-            playAll()
+            if Playlist.sharedInstance.playlist.count == 0{
+                let alertController = UIAlertController(title: "Playlist Empty", message: "Please go back and add some podcasts to play all together", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            }
+            else{
+                playAll()
+                let newBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.pause, target: self, action: #selector(PlaylistTableViewController.playAllPressed(_:)))
+                
+                navBar.rightBarButtonItem = newBarButton
+            }
+            
         }
         else{
             if playerController.rate == 1.0{
                 playerController.pause()
+                let newBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.play, target: self, action: #selector(PlaylistTableViewController.playAllPressed(_:)))
+                navBar.rightBarButtonItem = newBarButton
             }
             else{
                 playerController.play()
+                let newBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.pause, target: self, action: #selector(PlaylistTableViewController.playAllPressed(_:)))
+                
+                navBar.rightBarButtonItem = newBarButton
             }
-            
         }
     }
     
@@ -87,52 +102,6 @@ class PlaylistTableViewController: UITableViewController {
         playerController = AVQueuePlayer(items: podcasts)
         playerController.play()
     }
-    
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
