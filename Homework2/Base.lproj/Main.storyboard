@@ -149,7 +149,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Playlist" id="trD-nx-ujp">
-                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="izX-nl-0C1"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="play" id="izX-nl-0C1">
+                            <connections>
+                                <action selector="playAllPressed:" destination="6Tm-Wz-Wef" id="aZL-sM-t4r"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KOT-b0-aQL" userLabel="First Responder" sceneMemberID="firstResponder"/>

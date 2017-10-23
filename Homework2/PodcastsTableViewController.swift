@@ -24,6 +24,12 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
         getFeeds()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        print("View appeared")
+        isPaused = false
+        nowPlaying = nil
+        tableView.reloadData()
+    }
     //URL connection method
     func getFeeds() {
         let request = NSMutableURLRequest(url: NSURL(string: "http://feed.thisamericanlife.org/talpodcast")! as URL,
@@ -175,12 +181,13 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
         }
     }
     
-    
+
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        playerController.pause()
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }

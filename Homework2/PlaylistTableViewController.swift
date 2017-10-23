@@ -7,9 +7,10 @@
 //
 
 import UIKit
-
+import AVKit
 class PlaylistTableViewController: UITableViewController {
 
+    var playerController:AVQueuePlayer = AVQueuePlayer()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,6 +26,9 @@ class PlaylistTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        print("View Appeared")
+    }
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,6 +56,20 @@ class PlaylistTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    
+    @IBAction func playAllPressed(_ sender: UIBarButtonItem) {
+        let currentItem = playerController.currentItem
+        if currentItem == nil {
+            var podcasts:[AVPlayerItem] = []
+            for items in Playlist.sharedInstance.playlist{
+                let podcast = AVPlayerItem(url: items.streamingLink!)
+                podcasts.append(podcast)
+            }
+            playerController = AVQueuePlayer(items: podcasts)
+            playerController.play()
+        }
+    }
+    
     
     /*
     // Override to support conditional editing of the table view.

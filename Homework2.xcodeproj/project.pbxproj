@@ -71,8 +71,8 @@
 				60A18B251F86F2EC00BA92CD /* Main.storyboard */,
 				60A18B2D1F86F2EC00BA92CD /* Info.plist */,
 				CEBE39AF1F9CD9E700B5B374 /* PodcastsTableViewController.swift */,
-				CEBE39B21F9CFCBC00B5B374 /* PodcastCustomTableViewCell.swift */,
 				CEBE39B41F9D0A1200B5B374 /* PlaylistTableViewController.swift */,
+				CEBE39B21F9CFCBC00B5B374 /* PodcastCustomTableViewCell.swift */,
 				CEBE39B61F9D27F900B5B374 /* PlayList.swift */,
 			);
 			path = Homework2;
