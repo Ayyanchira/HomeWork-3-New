@@ -28,7 +28,7 @@ class PodcastCustomTableViewCell: UITableViewCell {
     
 
     @IBAction func addToPlaylistPressed(_ sender: UIButton) {
-        sender.isHidden = true
+//        sender.setTitle("Remove", for: .normal)
     }
     
 //    func showIcon() {
