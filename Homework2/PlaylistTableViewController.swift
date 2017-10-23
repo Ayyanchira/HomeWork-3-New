@@ -29,24 +29,30 @@ class PlaylistTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return Playlist.sharedInstance.playlist.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "podcastcell", for: indexPath) as! PlaylistCell
+        let podcast = Playlist.sharedInstance.playlist[indexPath.row]
+        cell.podcastTitleLabel.text = podcast.title
+        cell.deleteButton.tag = indexPath.row
         // Configure the cell...
-
         return cell
     }
-    */
-
+ 
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        if(Playlist.sharedInstance.removePodcastAtIndex(index: sender.tag)){
+            tableView.reloadData()
+        }
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -92,4 +98,10 @@ class PlaylistTableViewController: UITableViewController {
     }
     */
 
+}
+
+class PlaylistCell: UITableViewCell {
+    @IBOutlet weak var podcastTitleLabel: UILabel!
+    
+    @IBOutlet weak var deleteButton: UIButton!
 }

@@ -45,6 +45,7 @@ class Playlist {
     private init(){    }
     
     var playlist:[Podcast] = []
+    
     func addToPlaylist(podcast:Podcast) -> Bool {
         var status = true
         for item in playlist {
@@ -55,6 +56,12 @@ class Playlist {
         }
         playlist.append(podcast)
         return status
+    }
+    
+    func removePodcastAtIndex(index:Int) -> Bool {
+        
+        playlist.remove(at: index)
+        return true
     }
     
 }
