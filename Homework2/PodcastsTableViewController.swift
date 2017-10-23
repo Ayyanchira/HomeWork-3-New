@@ -167,13 +167,11 @@ class PodcastsTableViewController: UITableViewController, XMLParserDelegate {
         let podcast = podcastArray[sender.tag]
         
         if Playlist.sharedInstance.addToPlaylist(podcast: podcast){
-            let alertController = UIAlertController(title: "Added Successfully", message: "", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
+            sender.isEnabled = false
         }
         else
         {
+            sender.isEnabled = false
             let alertController = UIAlertController(title: "Already added", message: "", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(okAction)
