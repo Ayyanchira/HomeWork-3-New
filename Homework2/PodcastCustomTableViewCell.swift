@@ -25,11 +25,10 @@ class PodcastCustomTableViewCell: UITableViewCell {
         print("selected...\(selected) status")
         // Configure the view for the selected state
     }
-    @IBAction func playButtonPressed(_ sender: UIButton) {
-       // toggleMediaIcon()
-    }
     
+
     @IBAction func addToPlaylistPressed(_ sender: UIButton) {
+        sender.isHidden = true
     }
     
 //    func showIcon() {

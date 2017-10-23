@@ -8,21 +8,53 @@
 
 import Foundation
 import AVKit
-class PlayList: NSObject {
+//class PlayList {
+//
+//    var playlist:[Podcast] = []
+//
+//    static let sharedInstace = PlayList()
+//    func addToPlaylist(podcast:Podcast) -> Bool {
+//
+//        for podcasts in playlist{
+//            return {podcasts == podcast}()
+//        }
+//        playlist.append(podcast)
+//        return true
+//    }
+//
+//    func playPlaylist() {
+//
+//    }
+//
+//}
+
+//struct PlayList {
+//    static let sharedInstance = PlayList()
+//    var playlist:[Podcast] = []
+//    mutating func addToPlaylist(podcast:Podcast) -> Bool {
+//        for podcasts in playlist{
+//            return {podcasts == podcast}()
+//        }
+//        self.playlist.append(podcast)
+//        return true
+//    }
+//}
+
+class Playlist {
+    static let sharedInstance = Playlist()
+    private init(){    }
     
     var playlist:[Podcast] = []
-    
     func addToPlaylist(podcast:Podcast) -> Bool {
-        
-        for podcasts in playlist{
-            return {podcasts == podcast}()
+        var status = true
+        for item in playlist {
+            if item == podcast{
+                status = false
+                return status
+            }
         }
         playlist.append(podcast)
-        return true
-    }
-    
-    func playPlaylist() {
-        
+        return status
     }
     
 }
