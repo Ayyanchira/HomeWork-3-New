@@ -60,14 +60,27 @@ class PlaylistTableViewController: UITableViewController {
     @IBAction func playAllPressed(_ sender: UIBarButtonItem) {
         let currentItem = playerController.currentItem
         if currentItem == nil {
-            var podcasts:[AVPlayerItem] = []
-            for items in Playlist.sharedInstance.playlist{
-                let podcast = AVPlayerItem(url: items.streamingLink!)
-                podcasts.append(podcast)
-            }
-            playerController = AVQueuePlayer(items: podcasts)
-            playerController.play()
+            playAll()
         }
+        else{
+            if playerController.rate == 1.0{
+                playerController.pause()
+            }
+            else{
+                playerController.play()
+            }
+            
+        }
+    }
+    
+    func playAll(){
+        var podcasts:[AVPlayerItem] = []
+        for items in Playlist.sharedInstance.playlist{
+            let podcast = AVPlayerItem(url: items.streamingLink!)
+            podcasts.append(podcast)
+        }
+        playerController = AVQueuePlayer(items: podcasts)
+        playerController.play()
     }
     
     
