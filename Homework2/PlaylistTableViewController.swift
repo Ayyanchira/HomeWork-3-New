@@ -52,6 +52,9 @@ class PlaylistTableViewController: UITableViewController {
     }
  
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        let avItem = playerController.items()[sender.tag]
+        playerController.remove(avItem)
+        print(playerController.items().count)
         if(Playlist.sharedInstance.removePodcastAtIndex(index: sender.tag)){
             tableView.reloadData()
         }
